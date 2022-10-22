@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Home, Profile, Log, Posts, Inbox } from "./components";
-import { Route, Switch, Link } from "react-router-dom";
+import { Home, Profile, Posts, Inbox, AccountForm } from "./components";
+import { Route, Switch, Link, useHistory } from "react-router-dom";
 import { fetchPosts } from "./api/api";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
+  const [token, setToken] = useState(
+    window.localStorage.getItem("token") || ""
+  );
+
+  const history = useHistory()
 
   useEffect(() => {
     const getPosts = async () => {
@@ -18,6 +23,14 @@ const App = () => {
     getPosts();
   }, []);
 
+  useEffect(() => {
+    window.localStorage.getItem("token", token);
+  }, [token]);
+
+  const logOut = () => {
+    setToken("")
+    history.push("/")
+  }
 
   return (
     <>
@@ -36,9 +49,15 @@ const App = () => {
         <Link to="/Posts" className="post-nav">
           POST
         </Link>
-        <Link to="/Log" className="log-nav">
-          LOG-IN
-        </Link>
+        <div className="right-menu">
+          {token ? (
+            <button onClick={logOut} className="item">Log Out</button>
+          ): <Link to="/account/login" className="log-nav">
+            ACCOUNT
+             </Link>
+          }
+         
+        </div>
       </aside>
       <Switch>
         <Route exact path="/">
@@ -53,8 +72,8 @@ const App = () => {
         <Route path="/Posts">
           <Posts posts={posts} />
         </Route>
-        <Route path="/Log">
-          <Log />
+        <Route path="/account/:action">
+          <AccountForm setToken={setToken} />
         </Route>
       </Switch>
     </>
