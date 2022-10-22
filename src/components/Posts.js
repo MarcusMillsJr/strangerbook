@@ -1,8 +1,14 @@
 import React from "react";
+import PostDetail from "./PostDetail"
 
 const Posts = ({posts}) => {
+    console.log(posts, 'this is posts')
     return(
-        <div>This is Posts</div>
+        <div>
+            {posts.map((item)=>{
+                return <PostDetail key={item._id} posts={item}/>
+            })}
+        </div>
     )
 }
 
