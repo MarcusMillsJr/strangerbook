@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Home, Profile, Posts, Inbox, AccountForm } from "./components";
+import { Home, Profile, Posts, AccountForm, CreatePost } from "./components";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
-import { fetchPosts } from "./api/api";
+import { fetchPosts, fetchUser } from "./api/api";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(
-    window.localStorage.getItem("token") || ""
+    window.localStorage.getItem("token") || null
   );
+  const [user, setUser] = useState(null);
+  const [title, setTitle] = useState("")
+  const [price, setPrice] = useState("")
+  const [description, setDescription] = useState("")
 
-  const history = useHistory()
+
+  const history = useHistory();
 
   useEffect(() => {
     const getPosts = async () => {
@@ -23,54 +28,79 @@ const App = () => {
     getPosts();
   }, []);
 
+  
   useEffect(() => {
-    window.localStorage.getItem("token", token);
+    if (token) {
+      const getUser = async () => {
+        const { username } = await fetchUser(token);
+        console.log(username, "username");
+        setUser(username);
+      };
+      getUser();
+    }
+  }, [token]);
+
+
+  useEffect(() => {
+    if (token) {
+      window.localStorage.getItem("token", token);
+    } else {
+      window.localStorage.removeItem("token");
+    }
   }, [token]);
 
   const logOut = () => {
-    setToken("")
-    history.push("/")
-  }
+    setToken("");
+    setUser(null);
+    history.push("/");
+  };
 
   return (
     <>
-      <nav className="title-page">
-        <Link to="/" className="stranger-title">
-          STRANGER BOOK
-        </Link>
-      </nav>
-      <aside className="nav-menu">
+    <div>
+    </div>
+      <nav className="nav-menu">
+        <div className="left-nav">
         <Link to="/Profile" className="profile-nav">
           PROFILE
-        </Link>
-        <Link to="/Inbox" className="inbox-nav">
-          INBOX
         </Link>
         <Link to="/Posts" className="post-nav">
           POST
         </Link>
+        </div>
+        <nav className="title-page">
+        <Link to="/" className="stranger-title">
+          STRANGER BOOK
+        </Link>
+        <Link to="/account/register" className="register" >
+          SIGN UP
+        </Link>
+      </nav>
+        
         <div className="right-menu">
           {token ? (
-            <button onClick={logOut} className="item">Log Out</button>
-          ): <Link to="/account/login" className="log-nav">
-            ACCOUNT
-             </Link>
-          }
-         
+            <Link onClick={logOut} className="log-nav">
+              LOG OUT
+            </Link>
+          ) : (
+            <Link to="/account/login" className="log-nav">
+              LOG IN
+            </Link>
+          )}
         </div>
-      </aside>
+      </nav>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home/>
         </Route>
-        <Route path="/Profile">
+        <Route path="/profile">
           <Profile />
         </Route>
-        <Route path="/Inbox">
-          <Inbox />
-        </Route>
-        <Route path="/Posts">
+        <Route path="/posts">
           <Posts posts={posts} />
+        </Route>
+        <Route path="/create">
+          <CreatePost token={token} setPosts={setPosts} />
         </Route>
         <Route path="/account/:action">
           <AccountForm setToken={setToken} />

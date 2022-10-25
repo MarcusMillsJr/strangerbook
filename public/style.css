@@ -5,67 +5,91 @@
 .stranger-title{
     display: flex;
     color:black;
-    font-size: 5vh;
+    font-size: 6vh;
+    font-weight: bolder;
     text-decoration: none;
     justify-content: center;
     align-items: center;
-    margin: 2rem;
+    margin: 0 0 .5rem 0;
 }
 
 .profile-nav{
     display: flex;
     color:black;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: bolder;
     text-decoration: none;
     justify-content: center;
     align-items: center;
+    margin:0rem 3rem 0rem 0rem;
 }
 
 .log-nav{
     display: flex;
     color:black;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-weight:bolder;
     text-decoration: none;
     justify-content: center;
     align-items: center;
+    margin:0rem 1rem 0rem 8rem;
 }
 
-.inbox-nav{
+.left-nav{
     display: flex;
-    color:black;
-    font-size: 1.5rem;
-    text-decoration: none;
-    justify-content: center;
     align-items: center;
 }
 
 .post-nav{
     display: flex;
     color:black;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-decoration: none;
+    font-weight: bolder;
     justify-content: center;
     align-items: center;
+    margin:1rem 0rem;
 }
 
+.log-form{
+    display: flex;
+    background-color: white;
+    width: 100vw;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+}
 
-
-
-.user-name {
+.usernamelabel{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10rem;
+}
+.usernamefield {
     display: flex;
     height: 3rem;
-    width: 50%;
+    width: 33vw;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 15rem;
+    margin-top: 1rem;
 }
 
-.pass-word {
+.passwordlabel{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+.passwordfield {
     display: flex;
     height: 3rem;
-    width: 50%;
+    width: 33vw;
+
     margin: 0 auto;
     margin-top: 1rem;
     justify-content: center;
@@ -73,7 +97,7 @@
     text-align: center;
 }
 
-.log-btn {
+.logbutton {
     display: flex;
     height: 2rem;
     width: 5rem;
@@ -95,8 +119,58 @@
 
 .nav-menu{
     display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
+    justify-content: space-between;
+    padding:0 1rem 0 1rem;
+    align-items: center;
+    margin: 2rem;
     margin-bottom: 1rem;
+}
 
+.card{
+    display: flex;
+    width: 100vw;
+    background-color: whitesmoke;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.content{
+    display: grid;
+    align-items: left;
+    flex-direction: column;
+    width: 95vw;
+    height: 33vh;
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.carduser{
+    display: flex;
+    margin: .3rem;
+}
+
+.cardheader{
+    display:flex;
+    margin: .3rem;
+}
+.cardprice{
+    display: flex;
+    margin: .3rem;
+}
+
+.carddescription{
+    margin: .3rem;
+}
+
+.extraheader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .3rem;
+    text-decoration:none;
+    color: black;
+    width:7rem;
+    height: 2rem;
+    background-color: rgb(96, 160, 255);
 }

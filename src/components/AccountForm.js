@@ -25,25 +25,24 @@ const AccountForm = ({ setToken }) => {
   const title = action === "login" ? "LOG-IN" : " SIGN-UP";
 
   return (
-    <form className="log form" onSubmit={onSubmitHandler}>
-      <h1>{title}</h1>
-      <div className="usernamefield">
-        <label>Username</label>
+    <form className="log-form" onSubmit={onSubmitHandler}>
+      <div>
+        <label className="usernamelabel">Username</label>
         <input
+          className="usernamefield"
           type="text"
           value={username}
-          placeholder="usersname"
-          required
+          placeholder="enter usersname"
           onChange={(event) => setUsername(event.target.value)}
         />
       </div>
-      <div className="passwordfield">
-        <label>Password</label>
+      <div >
+        <label className="passwordlabel">Password</label>
         <input
+          className="passwordfield"
           type="password"
           value={password}
-          placeholder="password"
-          required
+          placeholder="enter password"
           onChange={(event) => setPassword(event.target.value)}
           minLength = "8"
         />
