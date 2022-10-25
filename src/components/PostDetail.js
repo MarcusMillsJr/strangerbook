@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 
 const PostDetails = ({posts}) => {
 
-    console.log("this is a tester", posts.author)
+    // console.log("this is a tester for post error", posts)
+
     return (
             <div className="card">
                 <div className="content">
-                    <div className="carduser"><b>USER:</b>Username</div>
+                    <div className="carduser"><b>USER:</b>{posts.author.username}</div>
                     <div className="cardheader"><b>ITEM:</b> {posts.title}</div>
                     <div className="cardprice"><b>PRICE:</b> {posts.price}</div>
                     <p className="carddescription"><b>DESCRIPTION:</b>{posts.description}</p>
@@ -19,5 +20,6 @@ const PostDetails = ({posts}) => {
             </div>
     )
 }
+
 
 export default PostDetails 

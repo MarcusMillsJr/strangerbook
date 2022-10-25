@@ -6,7 +6,7 @@ export const fetchPosts = async () => {
         const response = await fetch(`${BASE_URL}/posts`);
         console.log(response, 'this is the promise');
         const {data} = await response.json();
-        console.log(data.posts, 'this is post data')
+        // console.log(data.posts, 'this is post data')
         return data.posts
     } catch(error){
         console.error('error fetching posts')
@@ -79,6 +79,30 @@ export const createPost = async (token, title, description, price) => {
     console.log("error creating post", error);
 }
 }
+
+export const userLogin = async (username,password) => {
+
+    try {
+        const response = await fetch(`${BASE_URL}/users/login`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: {
+                    username,
+                    password
+                }
+            })
+        });
+        const result = await response.json()
+        console.log('user login result', result);
+        return result
+    } catch (error) {
+        console.log(error, "error login in user")
+    }
+}
+   
 
 // export const createPost = async (token, title, description, price) => {
 //     try {

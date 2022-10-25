@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { registerUser } from "../api/api";
+import { registerUser, userLogin } from "../api/api";
 import { useParams, useHistory} from "react-router-dom";
 
 const AccountForm = ({ setToken }) => {
@@ -14,9 +14,16 @@ const AccountForm = ({ setToken }) => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await registerUser(username, password);
-      setToken(data.token)
-      history.push("/")
+      if (action === 'register'){
+        const { data } = await registerUser(username, password);
+        setToken(data.token)
+        history.push("/")
+      } else {
+        const { data } = await userLogin(username,password)
+        console.log('userLogin data', data);
+        setToken(data.token)
+        history.push("/profile")
+      }
     } catch (error) {
       console.error("error logging user");
     }

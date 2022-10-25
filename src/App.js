@@ -61,10 +61,10 @@ const App = () => {
     </div>
       <nav className="nav-menu">
         <div className="left-nav">
-        <Link to="/Profile" className="profile-nav">
+        <Link to="/profile" className="profile-nav">
           PROFILE
         </Link>
-        <Link to="/Posts" className="post-nav">
+        <Link to="/posts" className="post-nav">
           POST
         </Link>
         </div>
@@ -72,16 +72,13 @@ const App = () => {
         <Link to="/" className="stranger-title">
           STRANGER BOOK
         </Link>
-        <Link to="/account/register" className="register" >
-          SIGN UP
-        </Link>
       </nav>
         
         <div className="right-menu">
           {token ? (
-            <Link onClick={logOut} className="log-nav">
+            <button type="button" onClick={logOut} className="log-nav">
               LOG OUT
-            </Link>
+            </button>
           ) : (
             <Link to="/account/login" className="log-nav">
               LOG IN

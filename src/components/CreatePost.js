@@ -14,12 +14,14 @@ const onFormSubmit = async (event) => {
     
     try {
       const result = await createPost(token,title, description,price);
-      setPosts((prevPost)  => {
-        console.log("prev post", prevPost);
-        console.log("result", result);
-        return [result, ...prevPost]})
-
-      console.log(result, "this is the onsubmit result")
+      // console.log('createPost result:', result);
+      setPosts((prevPost) => {
+        // console.log("prev post", prevPost);
+        // console.log("result", result);
+        return [result.post, ...prevPost];
+      })
+      history.push("/posts")
+      // console.log(result, "this is the onsubmit result")
     } catch (error) {
       console.error("error creating post");
     }
@@ -43,19 +45,7 @@ const onFormSubmit = async (event) => {
             return setTitle(event.target.value)
           }}
         ></input>
-        <label htmlFor="description" className="postlabel">
-          Description
-        </label>
-        <input
-          type="text"
-          placeholder="Add a Description"
-          className="forminput"
-          autoComplete="off"
-          value={description}
-          onChange={(event)=>{
-            return setDescription(event.target.value)
-          }}
-        ></input>
+        
         <label htmlFor="price" className="postlabel">
           Price
         </label>
@@ -67,6 +57,19 @@ const onFormSubmit = async (event) => {
           value={price}
           onChange={(event)=>{
             return setPrice(event.target.value)
+          }}
+        ></input>
+        <label htmlFor="description" className="postlabel">
+          Description
+        </label>
+        <input
+          type="text"
+          placeholder="Add a Description"
+          className="forminput"
+          autoComplete="off"
+          value={description}
+          onChange={(event)=>{
+            return setDescription(event.target.value)
           }}
         ></input>
         <button type="submit" className="formbutton" >
