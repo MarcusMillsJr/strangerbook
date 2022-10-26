@@ -8,14 +8,16 @@ const PostDetails = ({posts}) => {
     return (
             <div className="card">
                 <div className="content">
-                    <div className="carduser"><b>USER:</b>{posts.author.username}</div>
-                    <div className="cardheader"><b>ITEM:</b> {posts.title}</div>
-                    <div className="cardprice"><b>PRICE:</b> {posts.price}</div>
-                    <p className="carddescription"><b>DESCRIPTION:</b>{posts.description}</p>
+                    <label><b>USER:</b></label>
+                    <div className="carduser">{posts.author.username}</div>
+                    <label><b>ITEM:</b></label>
+                    <div className="cardheader"> {posts.title}</div>
+                    <label><b>PRICE:</b></label>
+                    <div className="cardprice"> {posts.price}</div>
+                    <label><b>DESCRIPTION:</b></label>
+                    <p className="carddescription">{posts.description}</p>
                     <div className="extracontent"></div>
-                    <div className="extraheader">
-                        <Link to="/" className="extraheader">Go Home</Link>
-                    </div>
+                    <button className="extraheader">DELETE POST</button>
                 </div>
             </div>
     )

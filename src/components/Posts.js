@@ -8,7 +8,7 @@ const Posts = ({ posts }) => {
 
   return (
     <>
-      <Link to="/create" className="createPostButton">Create Post +</Link>
+      <Link to="/create" className="createPostButton">ADD NEW POST</Link>
       <div>
         {posts.map((item) => {
           return <PostDetail key={item._id} posts={item} />;

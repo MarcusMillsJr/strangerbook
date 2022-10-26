@@ -29,16 +29,16 @@ const onFormSubmit = async (event) => {
 
 
   return (
-    <form onSubmit={onFormSubmit}>
-        <h2>Create New Post</h2>
+    <form className="createpostform"onSubmit={onFormSubmit}>
+        <h2 className="createposttitle">CREATE NEW POST</h2>
 
         <label htmlFor="title" className="postlabel">
-          Title
+          TITLE
         </label>
         <input
           type="text"
           placeholder="Choose a Title"
-          className="forminput"
+          className="titleinput"
           autoComplete="off"
           value={title}
           onChange={(event)=>{
@@ -47,12 +47,12 @@ const onFormSubmit = async (event) => {
         ></input>
         
         <label htmlFor="price" className="postlabel">
-          Price
+          PRICE
         </label>
         <input
           type="text"
           placeholder="Enter a Price"
-          className="forminput"
+          className="priceinput"
           autoComplete="off"
           value={price}
           onChange={(event)=>{
@@ -60,12 +60,12 @@ const onFormSubmit = async (event) => {
           }}
         ></input>
         <label htmlFor="description" className="postlabel">
-          Description
+          DESCRIPTION
         </label>
         <input
           type="text"
           placeholder="Add a Description"
-          className="forminput"
+          className="descriptioninput"
           autoComplete="off"
           value={description}
           onChange={(event)=>{
