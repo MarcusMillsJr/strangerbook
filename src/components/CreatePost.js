@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createPost } from "../api/api";
 
-const CreatePost = ({ token, setPosts }) => {
+const CreatePost = ({token, setPosts}) => {
 const history = useHistory();
 const [title, setTitle] = useState('');
 const [description, setDescription] = useState('');
@@ -37,7 +37,7 @@ const onFormSubmit = async (event) => {
         </label>
         <input
           type="text"
-          placeholder="Choose a Title"
+          placeholder=""
           className="titleinput"
           autoComplete="off"
           value={title}
@@ -51,7 +51,7 @@ const onFormSubmit = async (event) => {
         </label>
         <input
           type="text"
-          placeholder="Enter a Price"
+          placeholder=""
           className="priceinput"
           autoComplete="off"
           value={price}
@@ -64,7 +64,7 @@ const onFormSubmit = async (event) => {
         </label>
         <input
           type="text"
-          placeholder="Add a Description"
+          placeholder=""
           className="descriptioninput"
           autoComplete="off"
           value={description}

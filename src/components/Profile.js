@@ -1,13 +1,16 @@
 import React from "react";
+import { Route } from "react-router-dom";
+import { Link} from "react-router-dom";
+import MessageForm from "./MessageForm";
 
-const Profile = () => {
+
+const Profile = ({posts,token, setPosts}) => {
   return (
     <>
-      <div>This is your username</div>
-      <div>These are your post, create new post</div>
-      <div>this is the messages link</div>
-      <div>This is your sent link</div>
-      <div> This is your inbox from link</div>
+      <p>USERNAME HERE</p>
+      <Link to="/create" className="createPostProfileButton">ADD NEW POST</Link>
+      <p>View messages button, create route file path to show messages to and from</p>
+      <p> My Posts: mapping with filter only returning my post</p>
     </>
   );
 };

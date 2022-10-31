@@ -1,9 +1,9 @@
 import React from "react";
 import { Link} from "react-router-dom";
-import PostDetail from "./PostDetail";
+import PostDetails from "./PostDetail";
 
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, token, setPosts }) => {
   // console.log(posts, "this is posts");
 
   return (
@@ -11,7 +11,7 @@ const Posts = ({ posts }) => {
       <Link to="/create" className="createPostButton">ADD NEW POST</Link>
       <div>
         {posts.map((item) => {
-          return <PostDetail key={item._id} posts={item} />;
+          return <PostDetails key={item._id} posts={item} token={token} setPosts = {setPosts} />;
         })}
       </div>
     </>

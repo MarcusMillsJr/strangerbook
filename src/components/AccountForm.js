@@ -9,7 +9,7 @@ const AccountForm = ({ setToken }) => {
 
   const {action} = useParams();
   const history = useHistory();
-  console.log(action, "action");
+  // console.log(action, "action");
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -17,10 +17,11 @@ const AccountForm = ({ setToken }) => {
       if (action === 'register'){
         const { data } = await registerUser(username, password);
         setToken(data.token)
-        history.push("/")
-      } else {
+        // console.log(data.token, "data.token");
+        history.push("/profile")
+      } else if(action === 'login') {
         const { data } = await userLogin(username,password)
-        console.log('userLogin data', data);
+        // console.log(data.token, "data.token");
         setToken(data.token)
         history.push("/profile")
       }

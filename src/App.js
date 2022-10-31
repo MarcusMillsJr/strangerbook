@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Home, Profile, Posts, AccountForm, CreatePost } from "./components";
+import { Home, Profile, Posts, AccountForm, CreatePost, MessageForm} from "./components";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import { fetchPosts, fetchUser } from "./api/api";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(
-    window.localStorage.getItem("token") || null
+    window.localStorage.getItem("token" || "")
   );
   const [user, setUser] = useState(null);
   const [title, setTitle] = useState("")
@@ -19,21 +19,21 @@ const App = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const result = await fetchPosts();
+        const result = await fetchPosts(token);
         setPosts(result);
       } catch (error) {
         console.error(error);
       }
     };
     getPosts();
-  }, []);
+  }, [token]);
 
   
   useEffect(() => {
     if (token) {
       const getUser = async () => {
         const { username } = await fetchUser(token);
-        console.log(username, "username");
+        // console.log(username, "username");
         setUser(username);
       };
       getUser();
@@ -43,12 +43,13 @@ const App = () => {
 
   useEffect(() => {
     if (token) {
-      window.localStorage.getItem("token", token);
+      window.localStorage.setItem("token", token);
     } else {
-      window.localStorage.removeItem("token");
+      window.localStorage.removeItem("token", token);
     }
   }, [token]);
 
+  
   const logOut = () => {
     setToken("");
     setUser(null);
@@ -91,10 +92,10 @@ const App = () => {
           <Home/>
         </Route>
         <Route path="/profile">
-          <Profile />
+          <Profile token={token} posts={posts} setPosts={setPosts} />
         </Route>
         <Route path="/posts">
-          <Posts posts={posts} />
+          <Posts posts={posts} token={token} setPosts={setPosts} />
         </Route>
         <Route path="/create">
           <CreatePost token={token} setPosts={setPosts} />
@@ -102,6 +103,7 @@ const App = () => {
         <Route path="/account/:action">
           <AccountForm setToken={setToken} />
         </Route>
+
       </Switch>
     </>
   );

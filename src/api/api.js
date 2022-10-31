@@ -1,12 +1,17 @@
 
 const BASE_URL =  'https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT'
 
-export const fetchPosts = async () => {
+export const fetchPosts = async (token) => {
+  console.log(token);
     try{
-        const response = await fetch(`${BASE_URL}/posts`);
-        console.log(response, 'this is the promise');
+        const response = await fetch(`${BASE_URL}/posts`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token} `
+          }});
+        // console.log(response, ' fetch post promise');
         const {data} = await response.json();
-        // console.log(data.posts, 'this is post data')
+        console.log(data, "fetch post data")
         return data.posts
     } catch(error){
         console.error('error fetching posts')
@@ -45,9 +50,9 @@ export const fetchUser = async(token) => {
                 'Authorization': `Bearer ${token} `
               },
         });
-        console.log("user response body", response);
+        // console.log("user response body", response);
         const {data} = await response.json();
-        console.log("user data", data);
+        // console.log("user data", data);
         return data
     } catch (error) {
         console.log(error, "error fetching user")
@@ -104,44 +109,41 @@ export const userLogin = async (username,password) => {
 }
    
 
-// export const createPost = async (token, title, description, price) => {
-//     try {
-//       const post = {
-//         description: description,
-//         title: title,
-//         price: price
-//       };
-  
-//       if (post) {
-//        post.price = price;
-//       }
-  
-//       const {success, error, data} = await fetch('${BASE_URL}/posts', {
-//         token: token,
-//         method: 'POST',
-//         body: {
-//           post: post
-//         }
-//       });
-  
-//       if (success) {
-//         return {
-//           error: null,
-//           post: data.post
-//         };
-//       } else {
-//         return {
-//           error: error.message,
-//           post: null
-//         };
-//       }
-//     } catch (error) {
-//       console.error('POST /create post failed:', error);
-  
-//       return {
-//         error: 'Failed to create Post',
-//         post: null
-//       };
-//     }
-//   }
-  
+export const deletePost = async (token, postId) => {
+  console.log("api delete id", postId);
+  try {
+    await fetch(`${BASE_URL}/posts/${postId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.error("DELETE /posts/postId failed:", error);
+  }
+};
+
+export const sendMessage = async (token, postId, content) => {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${postId}/messages`,{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token} `
+      },
+      body: JSON.stringify({
+        message: {
+          content: content
+        }
+      })
+    });
+    console.log(response, "message response");
+    const {data} = await response.json()
+    console.log(data, "message data");
+    return data
+  } catch (error) {
+    console.log(error, "message did not send")
+  }
+}
+
