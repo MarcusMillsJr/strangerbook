@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Home, Profile, Posts, AccountForm, CreatePost, MessageForm} from "./components";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import { fetchPosts, fetchUser } from "./api/api";
+import SentMessages from "./components/Sent";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(
     window.localStorage.getItem("token" || "")
   );
+  
   const [user, setUser] = useState(null);
   const [title, setTitle] = useState("")
   const [price, setPrice] = useState("")
@@ -103,7 +105,6 @@ const App = () => {
         <Route path="/account/:action">
           <AccountForm setToken={setToken} />
         </Route>
-
       </Switch>
     </>
   );

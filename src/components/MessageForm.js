@@ -21,7 +21,7 @@ const MessageForm = ({ token, postId }) => {
   return (
     <div className="commentform">
     <form onSubmit={submitMessage}>
-    <input
+      {token ? (<input
         type="text"
         value={content}
         placeholder=""
@@ -29,8 +29,8 @@ const MessageForm = ({ token, postId }) => {
         onChange={(event) => {
           return setContent(event.target.value)
         }}
-      />
-      <button type="submit" className="submitcomment">Comment</button>
+      />): null}
+      {token ? (<button type="submit" className="submitcomment">Comment</button>) : null} 
     </form>
     </div>
   );
