@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Home, Profile, Posts, AccountForm, CreatePost, MessageForm} from "./components";
+import { Home, Profile, Posts, AccountForm, CreatePost, MyInbox} from "./components";
 import { Route, Switch, Link, useHistory } from "react-router-dom";
 import { fetchPosts, fetchUser } from "./api/api";
-import SentMessages from "./components/Sent";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -37,6 +36,8 @@ const App = () => {
         const { username } = await fetchUser(token);
         // console.log(username, "username");
         setUser(username);
+        // create state for all user data 
+        // pass that to profile
       };
       getUser();
     }
@@ -104,6 +105,9 @@ const App = () => {
         </Route>
         <Route path="/account/:action">
           <AccountForm setToken={setToken} />
+        </Route>
+        <Route>
+          <MyInbox posts={posts} token={token}/>
         </Route>
       </Switch>
     </>

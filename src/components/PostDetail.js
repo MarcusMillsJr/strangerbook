@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MessageForm from "./MessageForm";
-import Posts from "./Posts";
 import { deletePost } from "../api/api";
 
 const PostDetails = ({ token, posts, setPosts }) => {
-  console.log("this is post details", posts);
+  // console.log("this is post details POSTS", posts);
   // console.log("this is the post user token", token);
 
   const deleteClick = async (token, postId) => {

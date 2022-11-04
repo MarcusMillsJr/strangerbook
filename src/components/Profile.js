@@ -1,38 +1,31 @@
 import React from "react";
-import { useState } from "react";
-import { Route } from "react-router-dom";
-import { Link} from "react-router-dom";
-import MessageForm from "./MessageForm";
-import MyPosts from "./MyPosts"
-import Posts from "./Posts";
+import { Link, Route } from "react-router-dom";
+import MyInbox from "./MyInbox";
+import MyMessages from "./MyMessages";
+import MyPosts from "./MyPosts";
 
-
-const Profile = ({posts,token, setPosts}) => {
-  console.log(posts, 'this is posts from profile 11');
-  console.log(posts.messages, 'this is posts.messages on profile.js 12');
-  
-
+const Profile = ({ posts, token, setPosts }) => {
+  // console.log(posts, 'this is posts from profile');
 
   return (
     <>
-      <Link to="/create" className="createPostButton">+</Link>
+      <Link to="/mymessages" className="viewMessageButton">
+        MESSAGES
+      </Link>
 
       <div className="allposts">
-          <div>
-            {posts.map((item) => {
-              return <MyPosts key={item._id} posts={item} token={token} setPosts = {setPosts} />;
-            })}
-          </div>
-      </div>
-      <div>
-        <nav className="mailnav">
-          <h3 className="mail3">MAIL </h3>
-          <button className="sent">SENT</button>
-          <button className="inbox">INBOX</button>
-          <div className="messagediv">
-
-          </div>
-        </nav>
+        <div>
+          {posts.map((item) => {
+            return (
+              <MyPosts
+                key={item._id}
+                posts={item}
+                token={token}
+                setPosts={setPosts}
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );

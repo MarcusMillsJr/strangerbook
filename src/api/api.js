@@ -2,7 +2,7 @@
 const BASE_URL =  'https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT'
 
 export const fetchPosts = async (token) => {
-  console.log(token);
+  // console.log(token);
     try{
         const response = await fetch(`${BASE_URL}/posts`, {
         headers: {
@@ -11,7 +11,7 @@ export const fetchPosts = async (token) => {
           }});
         // console.log(response, ' fetch post promise');
         const {data} = await response.json();
-        console.log(data, "fetch post data")
+        // console.log(data, "fetch post data")
         return data.posts
     } catch(error){
         console.error('error fetching posts')
