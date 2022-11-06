@@ -4,7 +4,7 @@ import MessageForm from "./MessageForm";
 
 const MyPosts = ({posts, token}) =>{
     return (
-        <div>{posts.isAuthor ? 
+        <div >{posts.isAuthor ? 
         <div>
       <div className="card2">
       <div className="content2">
