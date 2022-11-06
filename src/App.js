@@ -8,7 +8,6 @@ const App = () => {
   const [token, setToken] = useState(
     window.localStorage.getItem("token" || "")
   );
-  
   const [user, setUser] = useState(null);
   const [title, setTitle] = useState("")
   const [price, setPrice] = useState("")
@@ -34,8 +33,12 @@ const App = () => {
     if (token) {
       const getUser = async () => {
         const { username } = await fetchUser(token);
+
         // console.log(username, "username");
         setUser(username);
+        setDescription(description)
+        setPrice(price)
+        setTitle(title)
         // create state for all user data 
         // pass that to profile
       };

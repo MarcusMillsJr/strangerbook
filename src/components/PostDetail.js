@@ -10,7 +10,7 @@ const PostDetails = ({ token, posts, setPosts }) => {
   const deleteClick = async (token, postId) => {
     await deletePost(token, postId);
     setPosts((VersionOfAllPostoldVersionOfAllPost) =>
-      old.filter((everyPrevPost) => everyPrevPost._id !== postId)
+    VersionOfAllPostoldVersionOfAllPost.filter((everyPrevPost) => everyPrevPost._id !== postId)
     );
     // console.log(posts, "this is post");
     // console.log("this is delete click post id", postId);
