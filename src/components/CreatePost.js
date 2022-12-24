@@ -14,14 +14,11 @@ const onFormSubmit = async (event) => {
     
     try {
       const result = await createPost(token,title, description,price);
-      // console.log('createPost result:', result);
+  
       setPosts((prevPost) => {
-        // console.log("prev post", prevPost);
-        // console.log("result", result);
         return [result.post, ...prevPost];
       })
       history.push("/posts")
-      // console.log(result, "this is the onsubmit result")
     } catch (error) {
       console.error("error creating post");
     }

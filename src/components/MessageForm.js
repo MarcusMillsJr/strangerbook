@@ -10,8 +10,7 @@ const MessageForm = ({ token, postId }) => {
     event.preventDefault()
     
     try {
-        // console.log(postId, "this is postId");
-        await sendMessage(token, postId, content);
+      await sendMessage(token, postId, content);
     } catch (error) {
         console.error(error)
     }

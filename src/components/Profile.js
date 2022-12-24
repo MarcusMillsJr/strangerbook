@@ -5,7 +5,7 @@ import MyMessages from "./MyMessages";
 import MyPosts from "./MyPosts";
 
 const Profile = ({ posts, token, setPosts }) => {
-  // console.log(posts, 'this is posts from profile');
+  
 
   return (
     <>

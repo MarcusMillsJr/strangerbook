@@ -4,7 +4,7 @@ import PostDetails from "./PostDetail";
 
 
 const Posts = ({ posts, token, setPosts }) => {
-  // console.log(posts, "this is posts in posts");
+
   const [searchTerms, setSearchTerms] = useState("")
   const [filteredPosts, setFilteredPosts] = useState(posts);
 

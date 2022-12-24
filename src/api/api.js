@@ -33,9 +33,7 @@ export const registerUser = async (username, password) => {
               }
             })
         });
-        console.log("REGISTER RESPONSE----------->", response);
         const data = await response.json()
-        console.log("USER REGISTER DATA--------->",data);
         return data
     } catch(error){
         console.error('error registering user', error)
@@ -50,9 +48,8 @@ export const fetchUser = async(token) => {
                 'Authorization': `Bearer ${token} `
               },
         });
-        // console.log("user response body", response);
+      
         const {data} = await response.json();
-        // console.log("user data", data);
         return data
     } catch (error) {
         console.log(error, "error fetching user")
@@ -76,9 +73,8 @@ export const createPost = async (token, title, description, price) => {
                   }
               })
             })
-            console.log("create post response----------->", response);
+  
             const {data} = await response.json()
-            console.log("create post data--------->",data);
             return data
         } catch (error) {
     console.log("error creating post", error);
@@ -101,7 +97,6 @@ export const userLogin = async (username,password) => {
             })
         });
         const result = await response.json()
-        console.log('user login result', result);
         return result
     } catch (error) {
         console.log(error, "error login in user")
@@ -110,7 +105,7 @@ export const userLogin = async (username,password) => {
    
 
 export const deletePost = async (token, postId) => {
-  console.log("api delete id", postId);
+
   try {
     await fetch(`${BASE_URL}/posts/${postId}`, {
       method: "DELETE",
@@ -138,9 +133,8 @@ export const sendMessage = async (token, postId, content) => {
         }
       })
     });
-    console.log(response, "message response");
+
     const {data} = await response.json()
-    console.log(data, "message data");
     return data
   } catch (error) {
     console.log(error, "message did not send")

@@ -32,7 +32,7 @@ const App = () => {
   useEffect(() => {
     if (token) {
       const getUser = async () => {
-        const { username } = await fetchUser(token);
+        const { username, description, price, title } = await fetchUser(token);
 
         // console.log(username, "username");
         setUser(username);
